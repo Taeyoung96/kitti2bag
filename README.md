@@ -1,5 +1,11 @@
 # kitti2bag
 
+## What's New in forked repository?  
+- Fix some bugs in Dockerfile  
+- Add step by step [desciption page](./how_to_start_kitti2bag.md)
+
+---
+
 *Hello everybody! I'm looking for more people that can bring this package to the next level. If you'd like to help you can contact me via the email. I'll be happy for every news contribution!*
 
 [![Gitter](https://badges.gitter.im/kitti2bag/community.svg)](https://gitter.im/kitti2bag/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Build Status](https://travis-ci.org/tomas789/kitti2bag.svg?branch=master)](https://travis-ci.org/tomas789/kitti2bag)
