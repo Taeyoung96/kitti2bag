@@ -2,7 +2,22 @@
 
 ## What's New in forked repository?  
 - Fix some bugs in Dockerfile  
-- Add step by step [desciption page](./how_to_start_kitti2bag.md)
+- Add step by step [desciption page](./how_to_start_kitti2bag.md)  
+- Change Velodyne information (`x,y,z,intensity,ring`) - [reference](https://github.com/HMellor/LIO-SAM/blob/205cd3496375b7b2e86622f6c9c7b5cc0feb8008/config/doc/kitti2bag/kitti2bag.py#L259)  
+- Sequence informaation  
+
+### KITTI sequence information - [reference](https://github.com/mbrossar/ai-imu-dr/issues/4) 
+- 00: 2011_10_03_drive_0027 000000 004540
+- 01: 2011_10_03_drive_0042 000000 001100
+- 02: 2011_10_03_drive_0034 000000 004660
+- 03: 2011_09_26_drive_0067 000000 000800
+- 04: 2011_09_30_drive_0016 000000 000270
+- 05: 2011_09_30_drive_0018 000000 002760
+- 06: 2011_09_30_drive_0020 000000 001100
+- 07: 2011_09_30_drive_0027 000000 001100
+- 08: 2011_09_30_drive_0028 001100 005170
+- 09: 2011_09_30_drive_0033 000000 001590
+- 10: 2011_09_30_drive_0034 000000 001200
 
 ---
 
