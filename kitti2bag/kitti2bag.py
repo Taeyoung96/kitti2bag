@@ -177,6 +177,22 @@ def save_velo_data(bag, kitti, velo_frame_id, topic):
         # read binary data
         scan = (np.fromfile(velo_filename, dtype=np.float32)).reshape(-1, 4)
 
+        # get ring channel
+        depth = np.linalg.norm(scan, 2, axis=1)
+        pitch = np.arcsin(scan[:, 2] / depth) # arcsin(z, depth)
+        fov_down = -24.8 / 180.0 * np.pi
+        fov = (abs(-24.8) + abs(2.0)) / 180.0 * np.pi
+        proj_y = (pitch + abs(fov_down)) / fov  # in [0.0, 1.0]
+        proj_y *= 64  # in [0.0, H]
+        proj_y = np.floor(proj_y)
+        proj_y = np.minimum(64 - 1, proj_y)
+        proj_y = np.maximum(0, proj_y).astype(np.int32)  # in [0,H-1]
+        proj_y = proj_y.reshape(-1, 1)
+        scan = np.concatenate((scan,proj_y), axis=1)
+        scan = scan.tolist()
+        for i in range(len(scan)):
+            scan[i][-1] = int(scan[i][-1])
+
         # create header
         header = Header()
         header.frame_id = velo_frame_id
@@ -186,7 +202,8 @@ def save_velo_data(bag, kitti, velo_frame_id, topic):
         fields = [PointField('x', 0, PointField.FLOAT32, 1),
                   PointField('y', 4, PointField.FLOAT32, 1),
                   PointField('z', 8, PointField.FLOAT32, 1),
-                  PointField('i', 12, PointField.FLOAT32, 1)]
+                   PointField('intensity', 12, PointField.FLOAT32, 1),
+                  PointField('ring', 16, PointField.UINT16, 1)]
         pcl_msg = pcl2.create_cloud(header, fields, scan)
 
         bag.write(topic + '/pointcloud', pcl_msg, t=pcl_msg.header.stamp)

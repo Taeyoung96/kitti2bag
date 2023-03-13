@@ -8,17 +8,17 @@ git clone https://github.com/Taeyoung96/kitti2bag.git
 ### Build docker image with dockerfile
 
 ```
-docker build -t kittibag .
+docker build -t kitti2bag .
 ```
 
 ### Run docker container with command
 ```
-docker run --privileged -it -v $KITTI_ABSOLUTE_DIRECTORY:/data --name kitti_bag kittibag:latest -t $DATE -r $DRIVE raw_synced
+docker run --privileged -it -v $KITTI_ABSOLUTE_DIRECTORY:/data --name kitti_bag kitti2bag:latest -t $DATE -r $DRIVE raw_synced
 ```
 
 For example,
 ```
-docker run --privileged -it -v /data/LIDAR_dataset/kitti/sequence00:/data --name kitti_bag kittibag:latest -t 2011_10_03 -r 0027 raw_synced
+docker run --privileged -it -v /data/LIDAR_dataset/kitti/sequence00:/data --name kitti_bag kitti2bag:latest -t 2011_10_03 -r 0027 raw_synced
 ```
 
 In `$KITTI_ABSOLUTE_DIRECTORY`, it need folder name same with `$DATE`.
